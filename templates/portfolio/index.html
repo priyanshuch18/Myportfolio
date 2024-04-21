@@ -1,0 +1,260 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="{%static 'css/style.css'%}" />
+    <link rel="stylesheet" href="{%static 'css/mediaqueries.css'%}" />
+  </head>
+  <body>
+    {%for i in myinfo%}
+    <nav id="desktop-nav">
+      <div class="logo">{{i.name}}</div>
+      <div>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+    <nav id="hamburger-nav">
+      <div class="logo">Priyanshu</div>
+      <div class="hamburger-menu">
+        <div class="hamburger-icon" onclick="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="menu-links">
+          <li><a href="#about" onclick="toggleMenu()">About</a></li>
+          <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
+          <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
+          <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+        </div>
+      </div>
+    </nav>
+    
+    <section id="profile">
+      <div class="section__pic-container">
+        <img src="{{i.image.url}}" alt="Priyanshu profile picture" class="my_image" />
+      </div>
+      <div class="section__text">
+        <p class="section__text__p1">Hello, I'm</p>
+        <h1 class="title" style="color: rgb(181, 11, 11);">{{i.name}}</h1>
+        <p class="section__text__p2">{{i.profession}}</p>
+        <div class="btn-container">
+          <button
+            class="btn btn-color-2"
+            onclick="window.open('{{i.cv.url}}')"
+          >
+            Download CV
+          </button>
+          <button class="btn btn-color-1" onclick="location.href='./#contact'">
+            Contact Info
+          </button>
+        </div>
+        <div id="socials-container">
+          <img
+            src="{%static 'images/linkedin.png'%}"
+            alt="My LinkedIn profile"
+            class="icon"
+            onclick="location.href='https://linkedin.com/'"
+          />
+          <img
+            src="{%static 'images/github.png'%}"
+            alt="My Github profile"
+            class="icon"
+            onclick="location.href='https://github.com/'"
+          />
+        </div>
+      </div>
+    </section>
+    {%endfor%}
+    {%for i in about%}
+    <section id="about">
+      <p class="section__text__p1">Get To Know More</p>
+      <h1 class="title">About Me</h1>
+      <div class="section-container">
+        <div class="section__pic-container">
+          <img
+            src="{{i.image.url}}"
+            alt="Profile picture"
+            class="about-pic"
+          />
+        </div>
+        <div class="about-details-container">
+          <div class="about-containers">
+            <div class="details-container">
+              <img
+                src="{%static 'images/experience.png'%}"
+                alt="Experience icon"
+                class="icon"
+              />
+              <h3>Experience</h3>
+              <p>{{i.experience}}<br />Web Development</p>
+            </div>
+            <div class="details-container">
+              <img
+                src="{%static 'images/education.png'%}"
+                alt="Education icon"
+                class="icon"
+              />
+              <h3>Education</h3>
+              <p>B.Tech.(2020-2024)<br />Computer Science and Engineering</p>
+            </div>
+          </div>
+          <div class="text-container">
+            <p>
+              {{i.description}}
+            </p>
+          </div>
+        </div>
+      </div>
+      <img
+        src="{%static 'images/arrow.png'%}"
+        alt="Arrow icon"
+        class="icon arrow"
+        onclick="location.href='./#experience'"
+      />
+    </section>
+    {%endfor%}
+    <section id="experience">
+      <p class="section__text__p1">Explore My</p>
+      <h1 class="title">Experience</h1>
+      <div class="experience-details-container">
+        <div class="about-containers">
+          <div class="details-container">
+            <h2 class="experience-sub-title">Frontend Development</h2>
+            <div class="article-container">
+              {%for i in frontendskill%}
+              <article>
+                <img
+                  src="{%static 'images/checkmark.png'%}"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>{{i.name}}</h3>
+                  <p>{{i.level}}</p>
+                </div>
+              </article>
+              {%endfor%}
+              
+            </div>
+          </div>
+
+
+          <div class="details-container">
+            <h2 class="experience-sub-title">Backend Development</h2>
+            <div class="article-container">
+              {%for i in backendskill%}
+              <article>
+                <img
+                  src="{%static 'images/checkmark.png'%}"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>{{i.name}}</h3>
+                  <p>{{i.level}}</p>
+                </div>
+              </article>
+              {%endfor%}
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <img
+        src="{%static 'images/arrow.png'%}"
+        alt="Arrow icon"
+        class="icon arrow"
+        onclick="location.href='./#projects'"
+      />
+    </section>
+
+    <section id="projects">
+      <p class="section__text__p1">Browse My Recent</p>
+      <h1 class="title">Projects</h1>
+      <div class="experience-details-container">
+        <div class="about-containers">
+          {%for i in projects%}
+          <div class="details-container color-container">
+            <div class="article-container">
+              <img
+                src="{{i.image.url}}"
+                alt="Project 1"
+                class="project-img"
+              />
+            </div>
+            <h2 class="experience-sub-title project-title">{{i.name}}</h2>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='{{i.github_link}}'"
+              >
+                Github
+              </button>
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='{{i.live_link}}'"
+              >
+                Live Demo
+              </button>
+            </div>
+          </div>
+          {%endfor%}
+        </div>
+      </div>
+      <img
+        src="{%static 'images/arrow.png'%}"
+        alt="Arrow icon"
+        class="icon arrow"
+        onclick="location.href='./#contact'"
+      />
+    </section>
+    
+    <section id="contact">
+      <p class="section__text__p1">Get in Touch</p>
+      <h1 class="title">Contact Me</h1>
+      <div class="contact-info-upper-container">
+        <div class="contact-info-container">
+          <img
+            src="{%static 'images/email.png'%}"
+            alt="Email icon"
+            class="icon contact-icon email-icon"
+          />
+          <p><a href="mailto:iampriyanshuchoudhary18@gmail.com">iampriyanshuchoudhary18@gmail.com</a></p>
+        </div>
+        <div class="contact-info-container">
+          <img
+            src="{%static 'images/linkedin.png'%}"
+            alt="LinkedIn icon"
+            class="icon contact-icon"
+          />
+          <p><a href="https://www.linkedin.com/in/iampriyanshuchoudhary18">LinkedIn</a></p>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <nav>
+        <div class="nav-links-container">
+          <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+      <p>Copyright &#169; 2024 Priyanshu Choudhary. All Rights Reserved.</p>
+    </footer>
+    <script src="{%static 'js/script.js'%}"></script>
+  </body>
+</html>
